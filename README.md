@@ -1,6 +1,6 @@
 # tech-challenge-2025
 SRE AWS Technical Challenge
-![Architecture](docs/architecture.png)
+![Architecture](docs/Tech-Challenge.png)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
