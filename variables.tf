@@ -49,7 +49,7 @@ variable "key_name" {
 variable "key_path" {
   description = "EC2 Key local path"
   type        = string
-  default     = "management-key"
+  default     = "C:/Users/USERNAME/.ssh/management-key.pub"
 }
 
 variable "asg_min" {
