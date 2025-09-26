@@ -1,9 +1,13 @@
 # tech-challenge-2025
 SRE AWS Technical Challenge
-    - ![Architecture](docs/Tech-Challenge.png)
+### Architecture
+    - ![Architecture](docs/Tech-Challenge.png) 
+### Runbooks 
     - ![Runbooks](docs/runbooks.md)
+### Part-2 - Operational Analysis and Improvement Plan  
     - ![Part-2](docs/part-two-operational-analysis-and-improvement-plan.md)
-    - ![Evidence of success and commentary](docs/commentary_and_evidence_of_success.pdf)
+### Evidence of Success  
+    - ![Evidence of success and commentary](docs/commentary_and_evidence_of_success.pdf)  
 
 
 ### References
