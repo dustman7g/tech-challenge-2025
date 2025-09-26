@@ -4,13 +4,14 @@
 
 ### Security Gaps
 - Management EC2 has direct internet access but no MFA/bastion protections.
-- No encryption settings enforced on EBS volumes.
+- No encryption settings enforced on EBS volumes for the ASG instances.
 - Security groups allow SSH; no session logging or intrusion detection.
 - No centralized logging of ALB or EC2 activity.
 - One significant IAM security gap is the use of overly permissive roles that allow unnecessary actions beyond SSH and web serving.
 
 ### Availability Issues
 - Only 3 subnets does not allow you to spread each segment across multiple AZs. Having two subnets per Management, Application, and Backend would be ideal.
+ - Note: ended up needing multiple subnets for App and MGMT to use ALB and ASG need to multi AZs.
 - Only one management instance (single point of failure).
 - Auto Scaling Group (ASG) is spread across AZs, but backend subnet unused for HA.
 - No health checks or alarms beyond ALB defaults.
@@ -18,6 +19,7 @@
 ### Cost Optimization Opportunities
 - All EC2 are on-demand; reserved or spot instances could reduce cost.
 - t2.micro may be over/under-provisioned depending on workload.
+   - used t3.micro
 - Idle management instance incurs cost when not in use.
 
 ### Operational Shortcomings
@@ -31,8 +33,11 @@
 
 ### Priority 1 – Security
 - Restrict SSH access further (use Systems Manager Session Manager instead).
-- Encrypt EBS volumes by default.
+   - Started down this path and have it commented out in code for SSM endpoints for the VPC.
+- Encrypt EBS volumes by default for ASG instances.
+   - Using Coalfires module this was a requirement for management server but did not use with ASG due to time.
 - Enable VPC Flow Logs and ALB access logs.
+   - This appears to be mandatory in the coalfire vpc .
 
 ### Priority 2 – Availability
 - Create 3 more subnets and split each segment(Management,Application, and Backend) into another AZ so there is multi AZ redundancy for each segment.
@@ -42,7 +47,7 @@
 ### Priority 3 – Cost
 - Shut down management instance when not needed or replace with on-demand SSM sessions.
 - Consider spot instances for ASG if workload is fault-tolerant.
-- For testing t3.micro is on free tier and t2.micro is not.
+- For testinh t3.micro is on free tier and t2.micro is not.
 
 ### Priority 4 – Maintainability
 - Add Terraform modules for monitoring/backup automation.
@@ -61,33 +66,5 @@
 
 ---
 
-## Runbook Notes
 
-### Deploying the Environment
-Windows users
-Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
-Note: Service might not be running and in a disabled state - enable openSSH service and start it
-Set-Service "ssh-agent" -StartupType Automatic
-Start-Service "ssh-agent"
-
-To run terraform plan apply need to add 
-$env:AWS_ACCESS_KEY_ID = "your access key id"
-$env:AWS_SECRET_ACCESS_KEY = "your access key”
-$env:AWS_DEFAULT_REGION = "us-east-1"
-
-need to add public IP of your computer to SG so it will allow you to ssh
-
-### Find my public IP
-(Invoke-WebRequest -Uri "https://ifconfig.me/ip").Content.Trim()
-
-
-```bash
-git clone https://github.com/dustman7g/techchallenge.git
-terraform init
-terraform plan
-terraform apply
-```
-### Decommissioning the Environment
-```bash
-terraform destroy
 
