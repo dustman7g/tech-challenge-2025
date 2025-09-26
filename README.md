@@ -1,14 +1,14 @@
 # tech-challenge-2025
 SRE AWS Technical Challenge
-![Architecture](docs/Tech-Challenge.png)
-![Runbooks](docs/runbooks.md)
-![Part-2](docs/part-two-operational-analysis-and-improvement-plan.md)
-![Evidence of success and commentary](docs/commentary_and_evidence_of_success.pdf)
+    - ![Architecture](docs/Tech-Challenge.png)
+    - ![Runbooks](docs/runbooks.md)
+    - ![Part-2](docs/part-two-operational-analysis-and-improvement-plan.md)
+    - ![Evidence of success and commentary](docs/commentary_and_evidence_of_success.pdf)
 
 
 ### References
-https://github.com/Coalfire-CF
-https://registry.terraform.io/
+    - https://github.com/Coalfire-CF
+    - https://registry.terraform.io/
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
