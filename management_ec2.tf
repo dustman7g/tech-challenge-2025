@@ -11,7 +11,7 @@ module "management_ec2" {
   ec2_key_pair               = var.key_name
   subnet_ids                 = [aws_subnet.management[0].id]
   additional_security_groups = [aws_security_group.mgmt_sg.id]
-  root_volume_size           = 10
+  root_volume_size           = var.root_volume_size
   ebs_kms_key_arn            = data.aws_kms_key.ebs.arn
   associate_public_ip        = true
   vpc_id                     = aws_vpc.main.id

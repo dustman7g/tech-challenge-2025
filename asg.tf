@@ -5,8 +5,7 @@
 resource "aws_launch_template" "app_lt" {
   name_prefix = "app-lt-"
   image_id    = data.aws_ami.amazon_linux_2.id
-  #instance_type = "t2.micro"
-  instance_type          = "t3.micro" ########### t3.micro is on free
+  instance_type          = var.asg_instance_type 
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   key_name               = aws_key_pair.management.key_name
   user_data              = base64encode(file("${path.module}/userdata.sh"))

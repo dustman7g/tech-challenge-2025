@@ -75,3 +75,15 @@ variable "ec2_instance_type" {
   type        = string
   default     = "t2.micro"
 }
+
+variable "asg_instance_type" {
+  description = "Instance type for ASG template"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "root_volume_size" {
+  description = "Size of the root volume on Management server"
+  type        = number
+  default     = 10
+}
