@@ -7,14 +7,14 @@ key_path = "C:/Users/USERNAME/.ssh/management-key.pub"
 ##############################################################
 # Management Server configurations
 ##############################################################
-ec2_instance_type = "t2.micro"
+ec2_instance_type = "t2.micro"  ####t3.micro is on free tier
 allowed_mgmt_ip   = "32.32.32.32/32" ###### this will be your IP see README for more details - (Invoke-WebRequest -Uri "https://ifconfig.me/ip").Content.Trim()
 root_volume_size  = 10
 
 ##############################################################
 # Autoscaling group configurations
 ##############################################################
-asg_instance_type = "t2.micro"
+asg_instance_type = "t2.micro" ####t3.micro is on free tier
 asg_desired       = 2
 asg_min           = 2
 asg_max           = 6
